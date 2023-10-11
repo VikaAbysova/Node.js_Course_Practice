@@ -1,0 +1,80 @@
+openapi: '3.0.0'
+info:
+  title: Express Swagger API
+  version: '1.0.0'
+host: 'localhost:3000/api-docs'
+paths:
+  /health-check:
+    get:
+      summary: Check server health status
+      tags:
+        - health-check
+      description: This api is used to check if the GET method is working or not
+      responses:
+        '200':
+          description: The server is running
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/healthCheck'
+  /user:
+    post:
+      summary: Creating a new user
+      tags:
+        - User
+      description: This api is used to create a new user
+      parameters:
+        - name: user
+          in: body
+          description: User data
+          required: true
+          schema:
+            $ref: '#/definitions/user'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/user'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/definitions/Error'
+definitions:
+  healthCheck:
+    type: object
+    properties:
+      message:
+        type: string
+  user:
+    type: object
+    required:
+      - name
+      - email
+    properties:
+      id:
+        type: string
+        example: '123'
+      name:
+        type: string
+        example: 'Name'
+      email:
+        type: string
+        example: 'Email@example.com'
+  users:
+    type: array
+    items:
+      $ref: '#/definitions/user'
+  Error:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+      message:
+        type: string

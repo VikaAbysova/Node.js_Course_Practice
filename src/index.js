@@ -1,11 +1,12 @@
 const express = require('express');
-const app = express();
-const PORT = 3000;
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
 const healthCheckRouter = require('./routes/health-check.router');
 const userRouter = require('./routes/user.router');
 
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
+const app = express();
+const PORT = 3000;
 
 const swaggerOptions = {
   definition: {

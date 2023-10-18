@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true,
+    "es6": true
+  },
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "settings": {},
+  "rules": {
+    "no-magic-numbers": 1,
+    "no-unused-vars": ["error"],
+    "object-curly-spacing": ["error", "always"],
+    "no-undef": "error",
+    "no-use-before-define": ["error", "nofunc"],
+    "no-debugger": "warn",
+    "prettier/prettier": ["error"]
+  }
+}

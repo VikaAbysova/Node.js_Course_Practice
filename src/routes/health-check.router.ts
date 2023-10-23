@@ -1,4 +1,5 @@
-const express = require('express');
+import express from 'express';
+import httpStatus from '../constants/httpStatus.constants';
 const router = express.Router();
 
 /**
@@ -18,8 +19,8 @@ const router = express.Router();
  *              $ref: '#/definitions/healthCheck'
  */
 router.get('/', (req, res) => {
-    res.status(200).json({ message: 'Server is running...' });
-  });
+  res.status(httpStatus.OK).json({ message: 'Server is running...' });
+});
 
 /**
  * @swagger
@@ -31,4 +32,4 @@ router.get('/', (req, res) => {
  *          type: string
  */
 
-module.exports = router;
+export default router;

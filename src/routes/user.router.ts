@@ -1,4 +1,5 @@
-const express = require('express');
+import express from 'express';
+import httpStatus from '../constants/httpStatus.constants';
 const router = express.Router();
 
 /**
@@ -31,22 +32,22 @@ const router = express.Router();
  *              $ref: '#/definitions/Error'
  */
 router.post('/', (req, res) => {
-    const { id, name, email } = req.body;
-    if (!email || !name) {
-      const error = {
-        code: '400',
-        message: 'Bad request'
-      };
-      res.status(400).json(error);
-      return;
-    }
-    const user = {
-      id,
-      name,
-      email,
+  const { id, name, email } = req.body;
+  if (!email || !name) {
+    const error = {
+      code: '400',
+      message: 'Bad request',
     };
-    res.status(201).json({ user, message: 'User created successfully' });
-  });
+    res.status(httpStatus.BAD_REQUEST).json(error);
+    return;
+  }
+  const user = {
+    id,
+    name,
+    email,
+  };
+  res.status(httpStatus.CREATED).json({ user, message: 'User created successfully' });
+});
 
 /**
  * @swagger
@@ -82,4 +83,4 @@ router.post('/', (req, res) => {
  *          type: string
  */
 
-module.exports = router;
+export default router;
